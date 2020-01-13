@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Lists</string>
+    <string name="login_title_message">ToDo Lists for Family</string>
+    <string name="login_message">Continue Panna login pannunga da</string>
+    <string name="register_message">Please enter below details for Registeration</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="conf_password">Confirm Password</string>
+    <string name="login">LOGIN</string>
+    <string name="empty"></string>
+    <string name="fname">First Name</string>
+    <string name="lname">Last Name</string>
+    <string name="email">E-mail</string>
+    <string name="mobile">Mobile No.</string>
+    <string name="forgotpassword">Forgot Password</string>
+    <string name="seperator">/</string>
+    <string name="register_button">Register</string>
+</resources>
