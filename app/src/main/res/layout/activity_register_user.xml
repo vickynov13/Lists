@@ -118,6 +118,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:text="@string/empty"
+            android:textColor="#00B0FF"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
             app:layout_constraintEnd_toEndOf="@+id/textView5" />
 
@@ -127,6 +128,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPassword"
+            android:textColor="#00B0FF"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView7"
             app:layout_constraintEnd_toEndOf="@+id/editText7" />
 
@@ -136,6 +138,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPassword"
+            android:textColor="#00B0FF"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView8"
             app:layout_constraintEnd_toEndOf="@+id/editText8" />
 
@@ -146,6 +149,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:text="@string/empty"
+            android:textColor="#00B0FF"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView9"
             app:layout_constraintEnd_toEndOf="@+id/editText9" />
 
@@ -156,6 +160,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:text="@string/empty"
+            android:textColor="#00B0FF"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView10"
             app:layout_constraintEnd_toEndOf="@+id/editText10" />
 
@@ -165,6 +170,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="numberSigned"
+            android:textColor="#00B0FF"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView11"
             app:layout_constraintEnd_toEndOf="@+id/editText11" />
 
@@ -174,6 +180,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textEmailAddress"
+            android:textColor="#00B0FF"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView12"
             app:layout_constraintEnd_toEndOf="@+id/editText12" />
 

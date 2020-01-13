@@ -25,7 +25,7 @@ import javax.net.ssl.TrustManagerFactory;
 
 public class CustomFunc1 {
 
-    public static StringBuilder getresponsebody(InputStream caInput, String typemethod, String endpoint, JSONObject jsonObject) {
+    public static StringBuilder getresponsebody(InputStream caInput, String endpoint, String typemethod, JSONObject jsonObject) {
         StringBuilder sb = new StringBuilder();
         CertificateFactory cf = null;
         Certificate ca = null;
@@ -75,25 +75,16 @@ public class CustomFunc1 {
             url = new URL(endpoint);
             urlConnection = (HttpsURLConnection)url.openConnection();
             urlConnection.setSSLSocketFactory(context.getSocketFactory());
-            urlConnection.setDoOutput(true);
-            urlConnection.setRequestMethod("PUT");
-            urlConnection.setRequestProperty("Content-Type", "application/json");
-            JSONObject jsonObject1 = new JSONObject();
-            jsonObject1.put("name","Test");
-            jsonObject1.put("email","test@g.co");
-            DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
-            wr.writeBytes(jsonObject1.toString());
-            wr.flush();
-            wr.close();
-                /*
-                urlConnection.setRequestMethod("POST");
+            if(typemethod.equalsIgnoreCase("PUT")) {
+                urlConnection.setDoOutput(true);
+                urlConnection.setRequestMethod("PUT");
                 urlConnection.setRequestProperty("Content-Type", "application/json");
                 DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
                 wr.writeBytes(jsonObject.toString());
                 wr.flush();
                 wr.close();
-                */
-                urlConnection.connect();
+            }
+            urlConnection.connect();
 
             //urlConnection.getResponseCode();
             InputStream in = urlConnection.getInputStream();
@@ -105,8 +96,6 @@ public class CustomFunc1 {
             }
             br.close();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
             e.printStackTrace();
         }
         return sb;
