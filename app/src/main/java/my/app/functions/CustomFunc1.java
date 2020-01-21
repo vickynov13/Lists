@@ -88,6 +88,7 @@ public class CustomFunc1 {
 
             //urlConnection.getResponseCode();
             InputStream in = urlConnection.getInputStream();
+            //to work on//InputStream inh = urlConnection.getHeaderField(field name);
             //InputStreamReader responseBodyReader = new InputStreamReader(in, "UTF-8");
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
             String read;
@@ -97,6 +98,8 @@ public class CustomFunc1 {
             br.close();
         } catch (IOException e) {
             e.printStackTrace();
+            sb.append("{"+'"'+"message"+'"'+":"+'"'+"serverdown"+'"'+"}");
+            System.out.println(sb.toString());
         }
         return sb;
     }

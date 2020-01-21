@@ -55,7 +55,7 @@ public class RegisterUser extends PublicVar {
                 errormsg = "Mobile number should have 10 digits";
             }else if((!email.contains("@"))||(!email.contains("."))){
                 errormsg = "Enter Valid email";
-            }else{
+            }else {
                 validationres = true;
                 sb= CustomFunc1.getresponsebody(caInput,endpoint,typemethod,jsonObject);
                 try {
@@ -82,6 +82,9 @@ public class RegisterUser extends PublicVar {
                     errormessage.setTextColor(getResources().getColor(R.color.errorColor));
                 }else if(sqlerror.contains("emailid_UNIQUE")){
                     errormsg = "Email Already Registered";
+                    errormessage.setTextColor(getResources().getColor(R.color.errorColor));
+                }else if(sqlerror.contains("serverdown")){
+                    errormsg = "Server Down";
                     errormessage.setTextColor(getResources().getColor(R.color.errorColor));
                 }else{
                     errormsg = sqlerror;
