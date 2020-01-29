@@ -7,5 +7,6 @@ import java.io.InputStream;
 
 public class PublicVar extends AppCompatActivity {
     public static ProgressBar spinner;
-    public static InputStream caInput;
+    //public static InputStream caInput;
+    public static String login_endpoint="https://gulunodejs.myvnc.com/api/login";
 }

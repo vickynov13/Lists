@@ -14,6 +14,8 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
+import java.io.InputStream;
+
 import my.app.functions.CustomFunc1;
 import my.app.functions.PublicVar;
 
@@ -45,6 +47,7 @@ public class RegisterUser extends PublicVar {
     private class Register extends AsyncTask<String, Void, String> {
         Boolean validationres = false;
         String errormsg=null;
+        InputStream caInput;
         @Override
         protected String doInBackground(String... params) {
             if(username.isEmpty()||pass.isEmpty()||confpass.isEmpty()||fname.isEmpty()||lname.isEmpty()||mobile.isEmpty()||email.isEmpty()){
@@ -57,7 +60,7 @@ public class RegisterUser extends PublicVar {
                 errormsg = "Enter Valid email";
             }else {
                 validationres = true;
-                sb= CustomFunc1.getresponsebody(caInput,endpoint,typemethod,jsonObject);
+                sb= CustomFunc1.getresponsebody(caInput,"https://gulunodejs.myvnc.com:4050/api/register",typemethod,jsonObject);
                 try {
                     JSONObject ress = new JSONObject(sb.toString());
                     sqlerror = ress.getString("message");

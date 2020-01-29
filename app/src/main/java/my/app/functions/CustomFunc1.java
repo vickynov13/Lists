@@ -25,14 +25,14 @@ import javax.net.ssl.TrustManagerFactory;
 
 public class CustomFunc1 {
 
-    public static StringBuilder getresponsebody(InputStream caInput, String endpoint, String typemethod, JSONObject jsonObject) {
+    public static StringBuilder getresponsebody(InputStream caInput1, String endpoint, String typemethod, JSONObject jsonObject) {
         StringBuilder sb = new StringBuilder();
         CertificateFactory cf = null;
         Certificate ca = null;
         SSLContext context = null;
         try {
             cf = CertificateFactory.getInstance("x.509");
-            ca = cf.generateCertificate(caInput);
+            ca = cf.generateCertificate(caInput1);
         } catch (CertificateException e) {
             e.printStackTrace();
         }
@@ -78,6 +78,14 @@ public class CustomFunc1 {
             if(typemethod.equalsIgnoreCase("PUT")) {
                 urlConnection.setDoOutput(true);
                 urlConnection.setRequestMethod("PUT");
+                urlConnection.setRequestProperty("Content-Type", "application/json");
+                DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
+                wr.writeBytes(jsonObject.toString());
+                wr.flush();
+                wr.close();
+            } else if(typemethod.equalsIgnoreCase("POST")) {
+                urlConnection.setDoOutput(true);
+                urlConnection.setRequestMethod("GET");
                 urlConnection.setRequestProperty("Content-Type", "application/json");
                 DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
                 wr.writeBytes(jsonObject.toString());
