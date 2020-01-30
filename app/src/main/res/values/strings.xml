@@ -15,4 +15,8 @@
     <string name="forgotpassword">Forgot Password</string>
     <string name="seperator">/</string>
     <string name="register_button">Register</string>
+    <string name="mobileno">Mobile No : </string>
+    <string name="emailid">E-mail : </string>
+    <string name="optiona">Manage Options</string>
+    <string name="todo">To Do\'s</string>
 </resources>

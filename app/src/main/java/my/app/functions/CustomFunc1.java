@@ -85,6 +85,14 @@ public class CustomFunc1 {
                 wr.close();
             } else if(typemethod.equalsIgnoreCase("POST")) {
                 urlConnection.setDoOutput(true);
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setRequestProperty("Content-Type", "application/json");
+                DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
+                wr.writeBytes(jsonObject.toString());
+                wr.flush();
+                wr.close();
+            } else if(typemethod.equalsIgnoreCase("GET")) {
+                urlConnection.setDoOutput(true);
                 urlConnection.setRequestMethod("GET");
                 urlConnection.setRequestProperty("Content-Type", "application/json");
                 DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());

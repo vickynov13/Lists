@@ -93,7 +93,13 @@ public class MainActivity extends PublicVar {
                     JSONArray ja = ress.getJSONArray("data");
                     JSONObject object3 = ja.getJSONObject(0);
                     sqlresp = object3.getString("COUNT(userid)");
-
+                    try {
+                    JSONArray ja1 = ress.getJSONArray("data1");
+                    JSONObject object4 = ja1.getJSONObject(0);
+                    userid = object4.getString("userid");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     //sqlresp = sb.toString();
                 } catch (JSONException e) {
                     e.printStackTrace();
