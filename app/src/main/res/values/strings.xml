@@ -18,5 +18,7 @@
     <string name="mobileno">Mobile No : </string>
     <string name="emailid">E-mail : </string>
     <string name="optiona">Manage Options</string>
-    <string name="todo">To Do\'s</string>
+    <string name="mytodo">My To Do\'s</string>
+    <string name='searchfield'>Enter any user related data</string>string>
+    <string name='searchuser'>Search User</string>string>
 </resources>

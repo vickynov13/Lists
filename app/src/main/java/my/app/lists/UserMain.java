@@ -2,9 +2,11 @@ package my.app.lists;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -22,6 +24,7 @@ public class UserMain extends PublicVar {
     StringBuilder sb=new StringBuilder();
     TextView welcomemsgtv, mobiletv, emailtv;
     String welcomemsg;
+    Button listview, searchuser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,34 @@ public class UserMain extends PublicVar {
         welcomemsgtv = (TextView)findViewById(R.id.textView1);
         mobiletv = (TextView)findViewById(R.id.textView3);
         emailtv = (TextView)findViewById(R.id.textView5);
+        listview = (Button)findViewById(R.id.viewlist);
+        searchuser = (Button)findViewById(R.id.searchuser);
         new LoadPage().execute("");
+        listview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spinner.setVisibility(View.VISIBLE);
+                StartListView();
+            }
+        });
+        searchuser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spinner.setVisibility(View.VISIBLE);
+                SearchUser();
+            }
+        });
+    }
+
+    private void StartListView() {
+        Intent startview = new Intent(this,ToDolistMain.class);
+        spinner.setVisibility(View.GONE);
+        startActivity(startview);
+    }
+    private void SearchUser() {
+        Intent startsearchview = new Intent(this,SearchUser.class);
+        spinner.setVisibility(View.GONE);
+        startActivity(startsearchview);
     }
 
     private class LoadPage extends AsyncTask<String, Void, String> {
