@@ -2,6 +2,7 @@ package my.app.lists;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -73,9 +74,16 @@ public class SearchUser extends PublicVar {
                     e.printStackTrace();
                 }
                 Toast.makeText(getBaseContext(), guestusername, Toast.LENGTH_LONG).show();
-
+                Viewuserlist();
             }
         });
+    }
+
+    private void Viewuserlist() {
+        Intent viewguestlist = new Intent(this,SelectedUsersList.class);
+        spinner.setVisibility(View.GONE);
+        //mainuser = false;
+        startActivity(viewguestlist);
     }
 
 

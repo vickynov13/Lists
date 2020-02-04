@@ -107,7 +107,7 @@ public class UserMain extends PublicVar {
         protected void onPreExecute() {
             jsonObject = new JSONObject();
             try {
-                jsonObject.put("userid",userid);
+                jsonObject.put("username",myusername);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

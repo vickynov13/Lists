@@ -116,6 +116,7 @@ public class MainActivity extends PublicVar {
                 spinner.setVisibility(View.GONE);
             }else if(sqlresp.equals("1")){
                 spinner.setVisibility(View.GONE);
+                myusername = username;
                 finish();
                 startActivity(usermain);
             }

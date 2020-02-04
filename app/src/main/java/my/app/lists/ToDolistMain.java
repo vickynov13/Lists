@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AlertDialog;
 
@@ -38,6 +39,8 @@ public class ToDolistMain extends PublicVar {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todolist);
+        spinner=(ProgressBar)findViewById(R.id.progressBar4);
+        spinner.setVisibility(View.GONE);
         new Getlistdata().execute("");
 
         listViewWithCheckbox = (ListView)findViewById(R.id.list_view_with_checkbox);
@@ -151,7 +154,7 @@ public class ToDolistMain extends PublicVar {
         @Override
         protected String doInBackground(String... params) {
 
-            sb= CustomFunc1.getresponsebody(caInput,"https://gulunodejs.myvnc.com:4050/api/getusertodos","POST",jsonObject);
+            sb= CustomFunc1.getresponsebody(caInput,"https://gulunodejs.myvnc.com:4050/api/getmytodos","POST",jsonObject);
             try {
                 JSONObject ress = new JSONObject(sb.toString());
                 JSONArray ja = ress.getJSONArray("data");
@@ -177,13 +180,20 @@ public class ToDolistMain extends PublicVar {
         @Override
         protected void onPostExecute(String result) {
             listViewWithCheckbox.setAdapter(listViewDataAdapter);
+            spinner.setVisibility(View.GONE);
         }
 
         @Override
         protected void onPreExecute() {
+            spinner.setVisibility(View.VISIBLE);
             jsonObject = new JSONObject();
             try {
-                jsonObject.put("userid",userid);
+                if(mainuser) {
+                    jsonObject.put("username", myusername);
+                }else{
+                    jsonObject.put("username", guestusername);
+                    mainuser = true;
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }

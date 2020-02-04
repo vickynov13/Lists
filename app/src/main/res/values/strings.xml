@@ -21,4 +21,7 @@
     <string name="mytodo">My To Do\'s</string>
     <string name='searchfield'>Enter any user related data</string>string>
     <string name='searchuser'>Search User</string>string>
+    <string name='selecteduserlist'>List of Activities for Selected User</string>string>
+    <string name='addtolist'>Add</string>string>
+    <string name='clicktoedit'>Click to Edit</string>string>
 </resources>
