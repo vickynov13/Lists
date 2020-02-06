@@ -14,8 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/NoAction">
-        <activity android:name=".SelectedUsersList"></activity>
-        <activity android:name=".SearchUser"></activity>
+        <activity android:name=".UserRequests"></activity>
+        <activity android:name=".SelectedUsersList" />
+        <activity android:name=".SearchUser" />
         <activity android:name=".UserMain" />
         <activity android:name=".RegisterUser" />
         <activity android:name=".ToDolistMain" />

@@ -2,6 +2,8 @@ package my.app.lists;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -70,11 +72,14 @@ public class SearchUser extends PublicVar {
                 try {
                     JSONObject object3 = ja.getJSONObject(position);
                     guestusername = object3.getString("username");
+                    new VerifyAccess().execute("");
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
+                    String error = e.toString();
+                    Toast.makeText(getBaseContext(), error, Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(getBaseContext(), guestusername, Toast.LENGTH_LONG).show();
-                Viewuserlist();
+                //Toast.makeText(getBaseContext(), guestusername, Toast.LENGTH_LONG).show();
+                //Viewuserlist();
             }
         });
     }
@@ -138,4 +143,128 @@ public class SearchUser extends PublicVar {
         protected void onProgressUpdate(Void... values) {
         }
     }
+
+    private class VerifyAccess extends AsyncTask<String, Void, String> {
+        InputStream caInput;
+        JSONObject jsonObject;
+        String accessstat;
+        @Override
+        protected String doInBackground(String... params) {
+            sb= CustomFunc1.getresponsebody(caInput,"https://gulunodejs.myvnc.com:4050/api/getguestaccess","POST",jsonObject);
+            try {
+                JSONObject ress = new JSONObject(sb.toString());
+                accessstat = ress.getString("check");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            spinner.setVisibility(View.GONE);
+
+            if(accessstat.equalsIgnoreCase("granted")){
+                Viewuserlist();
+            }else if(accessstat.equalsIgnoreCase("denied")){
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //secret = "yes";
+                                //new SelectedUsersList.Addtasktouser().execute("");
+                                new CreateAccessReq().execute("");
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //secret = "no";
+                                //new SelectedUsersList.Addtasktouser().execute("");
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(SearchUser.this);
+                builder.setMessage("You do not have access to view this users list. Do you want to request Access?").setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
+            }
+        }
+
+        @Override
+        protected void onPreExecute() {
+            spinner.setVisibility(View.VISIBLE);
+            jsonObject = new JSONObject();
+            userinput = userinput_et.getText().toString();
+            try {
+                jsonObject.put("myusername",myusername);
+                jsonObject.put("guestusername",guestusername);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try {
+                caInput = getAssets().open("server.cert");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+        }
+    }
+
+//------------------------------------------------------------------------
+
+    private class CreateAccessReq extends AsyncTask<String, Void, String> {
+        InputStream caInput;
+        JSONObject jsonObject;
+        String insertresp;
+        @Override
+        protected String doInBackground(String... params) {
+            sb= CustomFunc1.getresponsebody(caInput,"https://gulunodejs.myvnc.com:4050/api/createaccessreq","POST",jsonObject);
+            try {
+                JSONObject ress = new JSONObject(sb.toString());
+                insertresp = ress.getString("error");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if(insertresp.equalsIgnoreCase("false")) {
+                Toast.makeText(getBaseContext(), "Request Created", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(getBaseContext(), "Requested Already,  \n Ask user to Approve", Toast.LENGTH_LONG).show();
+            }
+            spinner.setVisibility(View.GONE);
+
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+            spinner.setVisibility(View.VISIBLE);
+            jsonObject = new JSONObject();
+            try {
+                jsonObject.put("myusername",myusername);
+                jsonObject.put("guestusername",guestusername);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try {
+                caInput = getAssets().open("server.cert");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+        }
+    }
+
 }
+

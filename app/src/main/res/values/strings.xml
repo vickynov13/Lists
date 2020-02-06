@@ -24,4 +24,6 @@
     <string name='selecteduserlist'>List of Activities for Selected User</string>string>
     <string name='addtolist'>Add</string>string>
     <string name='clicktoedit'>Click to Edit</string>string>
+    <string name='requests'>Requests</string>string>
+    <string name='requestheader'>Below Users have Requested Access \n (Click on user name for Actions)</string>string>
 </resources>

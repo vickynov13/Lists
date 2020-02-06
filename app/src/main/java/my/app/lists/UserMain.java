@@ -24,7 +24,7 @@ public class UserMain extends PublicVar {
     StringBuilder sb=new StringBuilder();
     TextView welcomemsgtv, mobiletv, emailtv;
     String welcomemsg;
-    Button listview, searchuser;
+    Button listview, searchuser, requests;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class UserMain extends PublicVar {
         emailtv = (TextView)findViewById(R.id.textView5);
         listview = (Button)findViewById(R.id.viewlist);
         searchuser = (Button)findViewById(R.id.searchuser);
+        requests = (Button)findViewById(R.id.requests);
         new LoadPage().execute("");
         listview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +52,19 @@ public class UserMain extends PublicVar {
                 SearchUser();
             }
         });
+        requests.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spinner.setVisibility(View.VISIBLE);
+                UserRequest();
+            }
+        });
+    }
+
+    private void UserRequest() {
+        Intent starturview = new Intent(this,UserRequests.class);
+        spinner.setVisibility(View.GONE);
+        startActivity(starturview);
     }
 
     private void StartListView() {
@@ -122,4 +136,7 @@ public class UserMain extends PublicVar {
         protected void onProgressUpdate(Void... values) {
         }
     }
+
+
+
 }
